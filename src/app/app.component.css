@@ -1,0 +1,184 @@
+:host {
+  display: block;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #fff;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 32px 24px 48px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #6a11cb 0%, #c33cbe 45%, #ff7e5f 100%);
+  background-attachment: fixed;
+}
+
+/* Header */
+.hero {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+.hero p {
+  margin: 8px 0 0;
+  opacity: 0.9;
+}
+
+/* Glass panels */
+.panel {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* Controls bar */
+.controls {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  padding: 18px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+}
+
+.file-pick {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-width: 0;
+}
+.file-pick input {
+  display: none;
+}
+.file-btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #fff;
+  color: #6a11cb;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform 0.15s;
+}
+.file-pick:hover .file-btn {
+  transform: translateY(-2px);
+}
+.file-name {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+.slider-group {
+  flex: 1;
+  min-width: 200px;
+}
+.slider-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+input[type='range'] {
+  width: 100%;
+  accent-color: #ffd166;
+  cursor: pointer;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ffd166;
+}
+
+.btn {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ffd166;
+  color: #3a0b5c;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Preview cards */
+.preview {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.card {
+  padding: 18px;
+}
+.card h3 {
+  margin: 0 0 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.card h3 small {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.stage {
+  height: 420px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.stage img,
+.stage canvas {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.stage canvas {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated; /* keep the blocks sharp when scaled up */
+}
+.hidden {
+  display: none;
+}
+.placeholder {
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+  .stage {
+    height: 300px;
+  }
+}

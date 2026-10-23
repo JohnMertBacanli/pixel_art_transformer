@@ -1,4 +1,18 @@
 // Interface matching Emscripten module exports
+import { Injectable } from '@angular/core';
+
+
+@Injectable({
+  providedIn: 'root' // <-- This tells Angular how to inject it everywhere!
+})
+export class DownscalerService {
+  // your WASM / C++ processing code here...
+
+  processImage(file: File, subdivisionLevel: number): void {
+    // Call your WASM module methods here (e.g., using Module._process_image, malloc, free, etc.)
+    console.log('Processing file with subdivision level:', subdivisionLevel);
+  }
+}
 interface WasmModule {
   _get_gcd(a: number, b: number): number;
   _process_image(

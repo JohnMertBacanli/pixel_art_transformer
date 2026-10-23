@@ -1,23 +1,64 @@
-<div class="downscaler-container">
-  <h2>Pixel Art Downscaler</h2>
+<div class="app">
+  <header class="hero">
+    <h1>Pixel Art Downscaler</h1>
+    <p>Pick an image, drag the slider, and watch it turn into pixel art.</p>
+  </header>
 
-  <div class="controls">
-    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-    
-    <label for="subdivision">Subdivision Factor:</label>
-    <input 
-      id="subdivision" 
-      type="number" 
-      [value]="subdivisionLevel" 
-      (input)="onSubdivisionChange($event)"
-      min="0.1" 
-      step="0.5" 
-    />
+  <section class="panel controls">
+    <label class="file-pick">
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+      <span class="file-btn">Choose image</span>
+      <span class="file-name">{{ fileName() || 'No file selected' }}</span>
+    </label>
 
-    <button (click)="processImage()">Downscale</button>
-  </div>
+    <div class="slider-group">
+      <div class="slider-label">
+        <span>Pixel size</span>
+        <strong>{{ factor() }}×</strong>
+      </div>
+      <input
+        type="range"
+        min="1"
+        max="32"
+        step="0.5"
+        [value]="factor()"
+        (input)="onSubdivisionChange($event)"
+      />
+    </div>
 
-  <div class="canvas-wrapper">
-    <canvas #displayCanvas></canvas>
-  </div>
+    <label class="toggle">
+      <input type="checkbox" [checked]="smooth()" (change)="onSmoothChange($event)" />
+      <span>Blend colors</span>
+    </label>
+
+    <button class="btn" (click)="download()" [disabled]="!hasImage()">Download PNG</button>
+  </section>
+
+  <section class="preview">
+    <div class="panel card">
+      <h3>Original</h3>
+      <div class="stage">
+        @if (originalUrl()) {
+          <img [src]="originalUrl()" alt="Original image" />
+        } @else {
+          <p class="placeholder">No image yet</p>
+        }
+      </div>
+    </div>
+
+    <div class="panel card">
+      <h3>
+        Pixel art
+        @if (hasImage()) {
+          <small>{{ outW() }} × {{ outH() }}</small>
+        }
+      </h3>
+      <div class="stage">
+        <canvas #outputCanvas [class.hidden]="!hasImage()"></canvas>
+        @if (!hasImage()) {
+          <p class="placeholder">Your result appears here</p>
+        }
+      </div>
+    </div>
+  </section>
 </div>
